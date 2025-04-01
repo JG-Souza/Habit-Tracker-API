@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('habit_logs', function (Blueprint $table) {
+        Schema::create('habit_logs', function (Blueprint $table): void {
             $table->id();
             $table->string('uuid')->unique();
             $table->foreignIdFor(Habit::class)->constrained();
