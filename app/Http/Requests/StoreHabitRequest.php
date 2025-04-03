@@ -23,7 +23,7 @@ class StoreHabitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:3', 'max:255', 'string']
+            'title' => ['required', 'min:3', 'max:255', 'string'],
         ];
     }
 

@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Habit;
-use App\Models\HabitLog;
-use App\Http\Resources\HabitResource;
 use App\Http\Requests\StoreHabitRequest;
 use App\Http\Requests\UpdateHabitRequest;
-
+use App\Http\Resources\HabitResource;
+use App\Models\Habit;
+use App\Models\HabitLog;
 
 class HabitController extends Controller
 {
-
     public function index()
     {
         return HabitResource::collection(
-            Habit::all()
+            Habit::query() // Isso diminui significativamente o número de consultas
+            ->when(
+                str(request()->string('with', ''))->contains('user'),
+                fn ($query) => $query->with('user')
+            )
+            ->when(
+                str(request()->string('with', ''))->contains('logs'),
+                fn ($query) => $query->with('logs')
+            )
+            ->get()
         );
     }
 
@@ -24,7 +30,6 @@ class HabitController extends Controller
     {
         return HabitResource::make($habit);
     }
-
 
     public function store(StoreHabitRequest $request)
     {

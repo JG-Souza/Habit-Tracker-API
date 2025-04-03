@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Habit;
 use App\Models\HabitLog;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class HabitSeeder extends Seeder
 {
