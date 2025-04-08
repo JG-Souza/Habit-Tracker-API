@@ -22,7 +22,7 @@ class HabitController extends Controller
                 str(request()->string('with', ''))->contains('logs'),
                 fn ($query) => $query->with('logs')
             )
-            ->get()
+            ->paginate()
         );
     }
 
