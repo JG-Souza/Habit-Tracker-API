@@ -26,10 +26,8 @@ class HabitLogController extends Controller
      */
     public function store(StoreHabitLogRequest $request, Habit $habit)
     {
-        $log = $habit->log()->updateOrCreate([
+        $log = $habit->logs()->updateOrCreate([
             'completed_at' => $request->date('completed_at'),
-        ], [
-            'uuid' => $request->string('uuid'),
         ]);
 
         return HabitLogResource::make($log);

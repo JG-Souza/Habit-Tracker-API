@@ -26,9 +26,4 @@ class StoreHabitRequest extends FormRequest
             'title' => ['required', 'min:3', 'max:255', 'string'],
         ];
     }
-
-    protected function passedValidation()
-    {
-        $this->merge(['uuid' => Str::uuid()]);
-    }
 }
