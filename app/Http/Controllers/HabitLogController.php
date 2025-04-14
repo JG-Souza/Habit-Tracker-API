@@ -34,26 +34,12 @@ class HabitLogController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(HabitLog $habitLog)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, HabitLog $habitLog)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HabitLog $habitLog)
+    public function destroy(Habit $habit, HabitLog $log)
     {
-        //
+        $log->delete();
+
+        return response()->noContent();
     }
 }
