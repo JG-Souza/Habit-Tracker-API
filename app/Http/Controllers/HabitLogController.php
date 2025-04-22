@@ -34,6 +34,14 @@ class HabitLogController extends Controller
     }
 
     /**
+     * Show one Resource.
+     */
+    public function show(Habit $habit, HabitLog $log)
+    {
+        return  HabitLogResource::make($log);
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Habit $habit, HabitLog $log)

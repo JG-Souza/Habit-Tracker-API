@@ -12,10 +12,13 @@ Route::prefix('/api')->name('api.')->group(function (): void {
     // Route::post('/habits', [HabitController::class, 'store'])->name('habits.store');
     // Route::put('/habits/{habit:uuid}', [HabitController::class, 'update'])->name('habits.update');
     // Route::delete('/habits/{habit:uuid}', [HabitController::class, 'destroy'])->name('habits.destroy');
-
     Route::apiResource('habits', HabitController::class)
         ->scoped(['habit' => 'uuid']);
-    Route::get('/habits/{habit:uuid}/logs', [HabitLogController::class, 'index'])->name('habits.logs.index');
-    Route::post('/habits/{habit:uuid}/logs', [HabitLogController::class, 'store'])->name('habits.logs.store');
-    Route::delete('/habits/{habit:uuid}/logs/{log:uuid}', [HabitLogController::class, 'destroy'])->name('habits.logs.destroy');
+
+    Route::apiResource('habits.logs', HabitLogController::class)
+        ->only(['index', 'show', 'store', 'destroy'])
+        ->scoped(['habit' => 'uuid', 'log' => 'uuid']);
+    // Route::get('/habits/{habit:uuid}/logs', [HabitLogController::class, 'index'])->name('habits.logs.index');
+    // Route::post('/habits/{habit:uuid}/logs', [HabitLogController::class, 'store'])->name('habits.logs.store');
+    // Route::delete('/habits/{habit:uuid}/logs/{log:uuid}', [HabitLogController::class, 'destroy'])->name('habits.logs.destroy');
 });
